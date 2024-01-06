@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/error.png') }}"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <title>Page Not Found - 404 Error</title>
+  </head>
+  <img
+    src="{{ url_for('static', filename='img/error.png') }}"
+    alt="error"
+    style="
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 10%;
+      margin-top: 2%;
+    "
+  />
+  <body class="bg-primary text-light">
+    <div class="container mt-5">
+      <div class="text-center">
+        <h1 class="display-1">404 Error</h1>
+        <p class="lead">Page not found!</p>
+        <p class="lead">The fault is on your side.</p>
+        <a href="/" class="btn btn-light">Back home</a>
+      </div>
+    </div>
+  </body>
+</html>
