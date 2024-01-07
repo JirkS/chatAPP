@@ -52,7 +52,7 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 - uživatel klikne na tlačítko "send" a javascript metoda si načte vše potřebné a posílá request na server na message
 
 #### Čtení zpráv
-- serevr pokaždé co je odeslána nová zpráva, načte si předešlé zprávy pomocí metody load messages s využitím socketu
+- server pokaždé co je odeslána nová zpráva, načte si předešlé zprávy pomocí metody load messages s využitím socketu
 
 ## REST API Endpointy
 ### 1. Získání všech zpráv ze všech chat roomů.
