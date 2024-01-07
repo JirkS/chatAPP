@@ -22,7 +22,7 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 
 ## Technologie
 - python Flask (app.py)
-- session
+- session implementována
 - SocketIO
 - MySQL
 
