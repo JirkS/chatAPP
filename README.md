@@ -26,6 +26,34 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 - SocketIO
 - MySQL
 
+## Web Socket
+### Server
+#### Připojení do roomu
+- využívá předepsanou metodu @socketio.on('join')
+- uživatel je vpuštěn do určité roomky a bot vypíše do chatu, že uživatel se připojil
+- z databáze se načtou zprávy
+
+#### Opuštění roomu
+- využívá předepsanou metodu @socketio.on('leave')
+- uživatel je odebrán z určité roomky a bot vypíše do chatu, že uživatel se odpojil
+
+#### Posílání a čtení zpráv
+- využívá předepsanou metodu @socketio.on('message')
+- z databáze se načtou veškeré zprávy z dané roomky
+
+### Klient
+#### Připojení do roomu
+- uživatel klikne na tlačítko "Join room" a javascript metoda si načte vše potřebné a posílá request na server na join
+
+#### Opuštění roomu
+- uživatel klikne na tlačítko "Leave room" a javascript metoda si načte vše potřebné a posílá request na server na leave
+
+#### Posílání zpráv
+- uživatel klikne na tlačítko "send" a javascript metoda si načte vše potřebné a posílá request na server na message
+
+#### Čtení zpráv
+- serevr pokaždé co je odeslána nová zpráva, načte si předešlé zprávy pomocí metody load messages s využitím socketu
+
 ## REST API Endpointy
 ### 1. Získání všech zpráv ze všech chat roomů.
 - URL: /chat-api/
