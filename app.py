@@ -151,7 +151,7 @@ def messages_by_user(name_user):
         return abort(404)
 
 @app.route('/chat-api/<int:id>', methods=['GET'])
-def messages_by_chat_room(id):
+def messages_by_room(id):
     if "user" not in session:
         return redirect(url_for("home"))
     cursor = mysql.connection.cursor()
