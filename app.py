@@ -126,7 +126,7 @@ def message_user(data):
     cursor.close()
 
 @app.route('/chat-api/', methods=['GET'])
-def get_all_chat_messages():
+def all_messages():
     if "user" not in session:
         return redirect(url_for("home"))
     cursor = mysql.connection.cursor()
@@ -138,7 +138,7 @@ def get_all_chat_messages():
         return abort(404)
 
 @app.route('/chat-api/<name>', methods=['GET'])
-def get_chat_messages_by_user(name_user):
+def messages_by_user(name_user):
     if "user" not in session:
         return redirect(url_for("home"))
 
@@ -151,7 +151,7 @@ def get_chat_messages_by_user(name_user):
         return abort(404)
 
 @app.route('/chat-api/<int:id>', methods=['GET'])
-def get_chat_messages_by_chat_room(id):
+def messages_by_chat_room(id):
     if "user" not in session:
         return redirect(url_for("home"))
     cursor = mysql.connection.cursor()
@@ -163,7 +163,7 @@ def get_chat_messages_by_chat_room(id):
         return abort(404)
 
 @app.route('/chat-api/word/<word>', methods=['GET'])
-def get_chat_messages_by_word(w):
+def messages_by_word(w):
     if "user" not in session:
         return redirect(url_for("home"))
     cursor = mysql.connection.cursor()
