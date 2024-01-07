@@ -4,13 +4,13 @@ URL adresa: http://16.16.68.180:5000/<br />
 
 Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využívání chat aplikace musíte být přihlášeni a mít správnou autentizaci. Můžete vstupovat do roomek pouze pomocí jejích čísla a zárověň z nich můžete odejít. Můžete posílat zprávy do jednotlivých chatů a číst real-time zprávy ostatních uživatelů.
 
-##Struktura
+## Struktura
 - Home - uvítací stránka, která vás odkáže na registraci a přihlášení
 - Chat APP -> přístup pouze s autentizací a příjlášením
 - Login - pomocí emailu a hesla
 - Register - pomocí uživatelkého jména, emailu a hesla
 
-##Funkce
+## Funkce
 - Registrace nového účtu k aplikaci
 - Přihlášení zaregistrovaným účtem (tehchnologie: session) 
 - Připojování a opouštění chatovacích skupin
@@ -20,13 +20,13 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 - Ukládání uživatelů a zpráv jednotlivých chatů do databáze (technologie: sql)
 - Hashovaní hesla (technologie: hash())
 
-##Technologie
+## Technologie
 - python Flask (app.py)
 - session
 - SocketIO
 - MySQL
 
-##REST API Endpointy
+## REST API Endpointy
 ### 1. Získání všech zpráv ze všech chat roomů.
 - URL: /chat-api/
 - Metoda: GET
