@@ -1,6 +1,6 @@
-var socket = io.connect()
+var webSocket = io.connect()
 
-function pretty_text(user_name, message){
+function createHtmlTagMessage(user_name, message){
     let tmp_text = `<div class="custom">
         <p class="custom_name">${user_name}</p> 
         <p class="custom_text">${message}</p>
@@ -8,7 +8,7 @@ function pretty_text(user_name, message){
     return tmp_text;
 }
 
-function alerts(message){
+function messageAlert(message){
     let tmp_text = `
     <div class="alert alert-danger" role="alert">
     ${message}
@@ -16,57 +16,59 @@ function alerts(message){
     return tmp_text;
 }
 
+function sendMessage() {
+    var roomNumber = document.getElementById('roomID').value;
+    var userMessage = document.getElementById('text-message').value;
+    webSocket.emit('message', {'room': roomNumber, 'msg': userMessage});
+    document.getElementById('text-message').value = '';
+}
+
+function updateMessages(all_messages) {
+    var messagesBox = document.getElementById('chat-area');
+    messagesBox.innerHTML = '';
+    for (var i = 0; i < all_messages.length; i++) {
+        var m = all_messages[i];
+        var htmlTag = createHtmlTagMessage(m[0], m[1]);
+        messagesBox.innerHTML += htmlTag;
+    }
+}
+
+webSocket.on('mm', function(data) {
+    var allMessages = document.getElementById('chat-area');
+    let userName = data['user'];
+    let userMessage = data['msg'];
+    allMessages.innerHTML += createHtmlTagMessage(userName, userMessage);
+    }
+);
+
+webSocket.on('load_messages', function(data) {
+    var allmMessages = data.messages;
+    updateMessages(allmMessages);
+    }
+);
+
 function joinRoom() {
-    var room_number = document.getElementById('roomID').value;
-    var join_button = document.getElementById('jointbn');
-    if(room_number <= 0){
-        var alertArea = document.getElementById('alert_area');
-        alertArea.innerHTML += alerts("Room number is incorrect!");
-        join_button.setAttribute('disabled', '');
+    var roomNumber = document.getElementById('roomID').value;
+    var joinButton = document.getElementById('jointbn');
+    if(roomNumber <= 0){
+        var alertsArea = document.getElementById('alert_area');
+        alertsArea.innerHTML += messageAlert("Room number is incorrect!");
+        joinButton.setAttribute('disabled', '');
         return
     }
     var roomnumber = document.getElementById('room-id');
-    roomnumber.innerHTML = room_number;
-    socket.emit('join', {'room': room_number});
-    join_button.setAttribute('disabled', '');
+    roomnumber.innerHTML = roomNumber;
+    webSocket.emit('join', {'room': roomNumber});
+    joinButton.setAttribute('disabled', '');
 }
 
 function leaveRoom() {
-    var room_number = document.getElementById('roomID').value;
-    socket.emit('leave', {'room': room_number});
+    var roomNumber = document.getElementById('roomID').value;
+    webSocket.emit('leave', {'room': roomNumber});
     var messages = document.getElementById('chat-area');
     var divs = messages.getElementsByTagName("div");
         for (var i = divs.length - 1; i >= 0; i--) {
             divs[i].remove();
         }
     location.reload()
-}
-
-function sendMessage() {
-    var room_number = document.getElementById('roomID').value;
-    var user_message = document.getElementById('text-message').value;
-    socket.emit('message', {'room': room_number, 'msg': user_message});
-    document.getElementById('text-message').value = '';
-}
-
-socket.on('mm', function(data) {
-    var all_messages = document.getElementById('chat-area');
-    user_name = data['user'];
-    user_message = data['msg'];
-    all_messages.innerHTML += pretty_text(user_name, user_message);
-});
-
-socket.on('load_messages', function(data) {
-    var all_messages = data.messages;
-    updateMessages(all_messages);
-});
-
-function updateMessages(all_messages) {
-    var messageContainer = document.getElementById('chat-area');
-    messageContainer.innerHTML = '';
-    for (var i = 0; i < all_messages.length; i++) {
-        var message = all_messages[i];
-        var prettyText = pretty_text(message[0], message[1]);
-        messageContainer.innerHTML += prettyText;
-    }
 }
