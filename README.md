@@ -6,9 +6,9 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 
 ## Struktura
 - Home - uvítací stránka, která vás odkáže na registraci a přihlášení
-- Chat APP -> přístup pouze s autentizací a příjlášením
-- Login - pomocí emailu a hesla
-- Register - pomocí uživatelkého jména, emailu a hesla
+- Chat APP -> přístup pouze s autentizací a přihlášením, roomky jsou přístupné pouze pomocí zadání čísla dané roomky, které je unikátní
+- Login - přihlášení pomocí emailu a hesla
+- Register - registrace pomocí uživatelkého jména, emailu a hesla
 
 ## Funkce
 - Registrace nového účtu k aplikaci
@@ -16,15 +16,17 @@ Webová aplikace obsahuje jednoduchou registraci a přihlášení. Pro využív�
 - Připojování a opouštění chatovacích skupin
 - Realtime komunikace (technologie: Socket.IO)
 - Odesílání a přijímání zpráv v rámci skupin chatu v reálním čase
-- Zobrazování chybných hlášek, při nesprávném užívání celé webové aplikace
+- Zobrazování chybných hlášek, při nesprávném užívání v rámci celé webové aplikace
 - Ukládání uživatelů a zpráv jednotlivých chatů do databáze (technologie: sql)
 - Hashovaní hesla (technologie: hash())
+- Loggování infa a errorů rozděleně do dvou souborů.
 
 ## Technologie
 - python Flask (app.py)
 - session implementována
 - SocketIO
 - MySQL
+- RotatingFileHandler
 
 ## Web Socket
 ### Server
